@@ -1,1 +1,1 @@
- find -maxdepth 2 –type f -prem 777
+find / -perm -2 -type f 2>/dev/null
