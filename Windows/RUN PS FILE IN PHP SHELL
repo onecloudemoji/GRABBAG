@@ -1,0 +1,1 @@
+powershell "(start-process -filepath "shell.exe")
