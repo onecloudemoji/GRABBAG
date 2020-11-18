@@ -1,0 +1,1 @@
+mawk 'BEGIN {system("/bin/sh")}'
