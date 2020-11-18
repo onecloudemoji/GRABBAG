@@ -1,0 +1,15 @@
+crack private keys
+
+use john to bruteforce the phrase on ssh keys
+
+ssh2john privatekey > private.john
+john --format=SSH private.john --wordlist /usr/share/wordlists/rockyou.txt
+
+Crack RSA keys
+
+ssh2john id_rsa > rsacrack
+
+
+this puts the file into a format that can be worked upon
+
+zcat /usr/share/wordlists/rockyou.txt.gz | john –pipe –rules rsacrack
