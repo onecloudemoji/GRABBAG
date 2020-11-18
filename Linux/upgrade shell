@@ -1,0 +1,9 @@
+python -c 'import pty; pty.spawn("/bin/bash")'
+
+CTRL + Z
+
+stty raw -echo
+
+fg
+
+https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/
