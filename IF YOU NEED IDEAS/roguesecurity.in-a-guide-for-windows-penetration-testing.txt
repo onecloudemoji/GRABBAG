@@ -1,0 +1,3 @@
+https://www.roguesecurity.in/2018/12/02/a-guide-for-windows-penetration-testing/
+
+very complete windows priv esc list
