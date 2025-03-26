@@ -1,0 +1,8 @@
+playwright
+requests
+flask
+python-telegram-bot
+pymupdf
+pytesseract
+pillow
+fitz
